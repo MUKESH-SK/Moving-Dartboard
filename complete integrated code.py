@@ -7,10 +7,10 @@ cap2 = cv2.VideoCapture(1,cv2.CAP_DSHOW)
 cap1.set(cv2.CAP_PROP_FPS, 60)
 cap2.set(cv2.CAP_PROP_FPS, 60)
 
-dartboard = cv2.imread("dartboard.png")
+# dartboard = cv2.imread("dartboard.png")
 
-# trajectory1 = np.zeros((480, 640, 3), dtype=np.uint8)  # 480 is along y direction and 640 is along x direction
-# trajectory2 = np.zeros((480, 640, 3), dtype=np.uint8)  # 480 is along y direction and 640 is along x direction
+trajectory1 = np.zeros((480, 640, 3), dtype=np.uint8)  # 480 is along y direction and 640 is along x direction
+trajectory2 = np.zeros((480, 640, 3), dtype=np.uint8)  # 480 is along y direction and 640 is along x direction
 dartboard_projection = np.zeros((600,600, 3), dtype=np.uint8)
 
 # Set up the HSV color range for the dart
@@ -32,7 +32,7 @@ positionsX2,positionsY2 = [],[]
 xList = [item for item in range(0,640)]
 frame_count2 = 0
 
-resized_dartboar = cv2.resize(dartboard, (200, 200))
+# resized_dartboar = cv2.resize(dartboard, (200, 200))
 
 x_board, y_board = 300,300
 # cv2.imshow("Resized", resized_dartboar)
@@ -70,15 +70,15 @@ while True:
             for i,(posX,posY) in enumerate(zip(positionsX1,positionsY1)):
                 pos1 = (posX,posY)
                 cv2.circle(frame1, pos1, 6, (0, 255, 0), cv2.FILLED)
-                # cv2.circle(trajectory1, pos1, 3, (0, 255, 0), cv2.FILLED)
+                cv2.circle(trajectory1, pos1, 3, (0, 255, 0), cv2.FILLED)
 
                 if i == 0:
                     cv2.line(frame1, pos1, pos1, (0, 255, 0), 2)
-                    # cv2.line(trajectory1, pos1, pos1, (0, 255, 0), 2)
+                    cv2.line(trajectory1, pos1, pos1, (0, 255, 0), 2)
 
                 else:
                     cv2.line(frame1,pos1,(positionsX1[i-1],positionsY1[i-1]),(0,255,0),2)
-                    # cv2.line(trajectory1,pos1,(positionsX1[i-1],positionsY1[i-1]),(0,255,0),2)
+                    cv2.line(trajectory1,pos1,(positionsX1[i-1],positionsY1[i-1]),(0,255,0),2)
 
             for x in yList:
                 y = int(a*x**2 + b*x + c)
@@ -88,7 +88,7 @@ while True:
 
     # Display the resulting frame and trajectory
     cv2.imshow('Frame_y', frame1)
-    # cv2.imshow('Trajectory1', trajectory1)
+    cv2.imshow('Trajectory1', trajectory1)
 
 
 
@@ -122,15 +122,15 @@ while True:
             for i,(posX,posY) in enumerate(zip(positionsX2,positionsY2)):
                 pos2 = (posX,posY)
                 cv2.circle(frame2, pos2, 6, (0, 255, 0), cv2.FILLED)
-                # cv2.circle(trajectory2, pos2, 3, (0, 255, 0), cv2.FILLED)
+                cv2.circle(trajectory2, pos2, 3, (0, 255, 0), cv2.FILLED)
 
                 if i == 0:
                     cv2.line(frame2, pos2, pos2, (0, 255, 0), 2)
-                    # cv2.line(trajectory2, pos2, pos2, (0, 255, 0), 2)
+                    cv2.line(trajectory2, pos2, pos2, (0, 255, 0), 2)
 
                 else:
                     cv2.line(frame2,pos2,(positionsX2[i-1],positionsY2[i-1]),(0,255,0),2)
-                    # cv2.line(trajectory2,pos2,(positionsX2[i-1],positionsY2[i-1]),(0,255,0),2)
+                    cv2.line(trajectory2,pos2,(positionsX2[i-1],positionsY2[i-1]),(0,255,0),2)
 
             for x in xList:
                 y = int(m*x + c)
@@ -140,8 +140,8 @@ while True:
 
     # Display the resulting frame and trajectory
     cv2.imshow('Frame_x', frame2)
-    cv2.imshow('Dartboard_projection', dartboard_projection )
-    # cv2.imshow('Trajectory2', trajectory2)
+    # cv2.imshow('Dartboard_projection', dartboard_projection )
+    cv2.imshow('Trajectory2', trajectory2)
 
 
     # Break the loop if the user presses 'q'
