@@ -3,6 +3,7 @@ import numpy as np
 
 # Initialize video capture and create a blank image for drawing the trajectory
 cap = cv2.VideoCapture(0,cv2.CAP_DSHOW)
+cap.set(cv2.CAP_PROP_FPS, 60)
 trajectory = np.zeros((480, 640, 3), dtype=np.uint8)  # 480 is along y direction and 640 is along x direction
 
 # Set up the HSV color range for the dart
